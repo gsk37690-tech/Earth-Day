@@ -23,22 +23,19 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: 8
-
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
           node-version: 18
-          cache: pnpm
+          cache: npm
 
       - name: Install dependencies
         run: npm install
 
       - name: Build
         run: npm run build
+        env:
+          GEMINI_API_KEY: ""
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
